@@ -17,6 +17,8 @@ if TYPE_CHECKING:
 
 load_dotenv()
 
+TX_TOKEN = os.getenv("TX_TOKEN")
+
 DEFAULT_WIDTH = 600
 DEFAULT_LINE_HEIGHT = 14
 
@@ -67,8 +69,7 @@ def one_diagram(
     logger.info(f"output: {output.resolve()}")
     output.parent.mkdir(exist_ok=True, parents=True)
 
-    tx_token = os.getenv("TX_TOKEN")
-    raw_data = get_translation_stats(tx_token)
+    raw_data = get_translation_stats(TX_TOKEN)
     dataset: Dataset = prepare_dataset(raw_data)
     count_by_language = dataset.get_count_by_languages()
 
@@ -92,8 +93,7 @@ def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
     logger.info(f"output_dir: {output_dir.resolve()}")
     output_dir.mkdir(exist_ok=True, parents=True)
 
-    tx_token = os.getenv("TX_TOKEN")
-    raw_data = get_translation_stats(tx_token)
+    raw_data = get_translation_stats(TX_TOKEN)
     dataset: Dataset = prepare_dataset(raw_data)
     count_by_language = dataset.get_count_by_languages()
 
