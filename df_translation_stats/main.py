@@ -4,15 +4,17 @@ import httpx
 import rich
 from dotenv import load_dotenv
 
+from .models import TranslationStats
+
 load_dotenv()
 
 
-def get_translation_stats(project_id: str):
+def get_translation_stats(project_id: str) -> TranslationStats:
     tx_token = os.getenv("TX_TOKEN")
     url = "https://rest.api.transifex.com/resource_language_stats"
     headers = {"Authorization": f"Bearer {tx_token}"}
     response = httpx.get(url, params={"filter[project]": project_id}, headers=headers)
-    return response.json()
+    return TranslationStats.model_validate(response.json())
 
 
 def main():
