@@ -58,8 +58,8 @@ def generate_diagram(
     logger.info(f"{output_file.name} chart file is saved")
 
 
-def generate_one_diagram(
-    output: Path,
+def one_diagram(
+    output: Path = Path("diagrams") / "dwarf-fortress-steam.svg",
     minimal_percent: int = 0,
     width: int = DEFAULT_WIDTH,
     height: int | None = None,
@@ -88,9 +88,32 @@ def generate_one_diagram(
     generate_diagram(dataset, width, height, output)
 
 
-def main() -> None:
-    generate_one_diagram(Path("diagrams") / "dwarf-fortress-steam.svg")
+def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
+    logger.info(f"output_dir: {output_dir.resolve()}")
+    output_dir.mkdir(exist_ok=True, parents=True)
+
+    tx_token = os.getenv("TX_TOKEN")
+    raw_data = get_translation_stats(tx_token)
+    dataset: Dataset = prepare_dataset(raw_data)
+    count_by_language = dataset.get_count_by_languages()
+
+    logger.info(f"{dataset.resources=}")
+    logger.info(f"{dataset.languages=}")
+    logger.info(f"{dataset.total_lines=}")
+
+    dataset.sort_languages()
+
+    for language in dataset.languages:
+        logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
+
+    width = DEFAULT_WIDTH
+    height = (len(dataset.languages) + 6) * DEFAULT_LINE_HEIGHT
+    generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
+
+    dataset = dataset.with_minimal_translation_percent(1)
+    height = (len(dataset.languages) + 6) * DEFAULT_LINE_HEIGHT
+    generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
 
 
 if __name__ == "__main__":
-    main()
+    one_diagram()

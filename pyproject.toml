@@ -25,4 +25,5 @@ ignore = [
 ]
 
 [tool.poe.tasks]
-run.script = "df_translation_stats.main:main"
+run.script = "df_translation_stats.main:one_diagram"
+two_diagrams.script = "df_translation_stats.main:two_diagrams"
