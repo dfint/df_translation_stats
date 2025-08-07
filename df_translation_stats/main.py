@@ -27,7 +27,11 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
     resource_language_stats = defaultdict(lambda: defaultdict(int))
 
     for row in raw_data.data:
-        language = Language.get(row.resource_info.language_code).display_name()
+        language_code = row.resource_info.language_code
+        if language_code == "en":
+            continue
+
+        language = Language.get(language_code).display_name()
         languages.add(language)
         total_lines_by_resource[row.resource_info.resource] = max(
             total_lines_by_resource.get(row.resource_info.resource, 0),
