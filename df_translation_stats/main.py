@@ -9,13 +9,11 @@ from dotenv import load_dotenv
 from langcodes import Language
 from loguru import logger
 
-from df_translation_stats.models import Dataset, LanguageName
-from df_translation_stats.quickchart import get_chart
+from df_translation_stats.quickchart import Dataset, LanguageName, get_chart
 from df_translation_stats.transifex import get_translation_stats
 
 if TYPE_CHECKING:
-
-    from df_translation_stats.models import TranslationStats
+    from df_translation_stats.transifex import TranslationStats
 
 load_dotenv()
 
