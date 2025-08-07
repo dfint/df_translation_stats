@@ -13,5 +13,16 @@ dependencies = [
     "scour>=0.38.2",
 ]
 
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "C408",
+    "D",
+]
+
 [tool.poe.tasks]
 run.script = "df_translation_stats.main:main"

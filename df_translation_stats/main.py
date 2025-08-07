@@ -1,19 +1,22 @@
 from __future__ import annotations
 
-from collections import defaultdict
-from collections.abc import Iterable
-from dataclasses import dataclass
 import os
+from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, NewType
+from typing import TYPE_CHECKING, Any, NewType
+
+from dotenv import load_dotenv
+from langcodes import Language
+from loguru import logger
 
 from df_translation_stats.quickchart import get_chart
 from df_translation_stats.transifex import get_translation_stats
-from loguru import logger
-from dotenv import load_dotenv
-from langcodes import Language
 
-from df_translation_stats.models import TranslationStats
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+
+    from df_translation_stats.models import TranslationStats
 
 load_dotenv()
 
@@ -29,11 +32,7 @@ def filter_languages_by_minmal_translation_count(
     count_by_language: dict[LanguageName, int],
     minimal_count: int,
 ) -> list[LanguageName]:
-    return [
-        language
-        for language in languages
-        if count_by_language[language] > minimal_count
-    ]
+    return [language for language in languages if count_by_language[language] > minimal_count]
 
 
 @dataclass
@@ -46,16 +45,11 @@ class Dataset:
     def resources(self) -> list[ResourceName]:
         return list(self.data.keys())
 
-    def with_languages(self, languages: list[LanguageName]) -> "Dataset":
-        return Dataset(
-            data=self.data, languages=languages, total_lines=self.total_lines
-        )
+    def with_languages(self, languages: list[LanguageName]) -> Dataset:
+        return Dataset(data=self.data, languages=languages, total_lines=self.total_lines)
 
     def get_count_by_languages(self) -> dict[LanguageName, int]:
-        return {
-            language: sum(item[language] for item in self.data.values())
-            for language in self.languages
-        }
+        return {language: sum(item[language] for item in self.data.values()) for language in self.languages}
 
     def sort_languages(self) -> None:
         count_by_language = self.get_count_by_languages()
@@ -64,7 +58,7 @@ class Dataset:
             key=lambda language: (-count_by_language[language], language),
         )
 
-    def with_minimal_translation_percent(self, minimal_percent: float) -> "Dataset":
+    def with_minimal_translation_percent(self, minimal_percent: float) -> Dataset:
         languages = filter_languages_by_minmal_translation_count(
             languages=self.languages,
             count_by_language=self.get_count_by_languages(),
@@ -85,9 +79,7 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
             total_lines_by_resource.get(row.resource_info.resource, 0),
             row.attributes.total_strings,
         )
-        resource_language_stats[row.resource_info.resource][language] = (
-            row.attributes.translated_strings
-        )
+        resource_language_stats[row.resource_info.resource][language] = row.attributes.translated_strings
 
     return Dataset(
         data=resource_language_stats,
@@ -163,9 +155,7 @@ def generate_one_diagram(
     dataset.sort_languages()
 
     for language in dataset.languages:
-        logger.info(
-            f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%"
-        )
+        logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
 
     height = height or (len(dataset.languages) + 6) * DEFAULT_LINE_HEIGHT
     generate_diagram(dataset, width, height, output)

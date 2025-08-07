@@ -2,14 +2,13 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 from typing import Any
+
 import httpx
 from scour.scour import scourString as scour_string  # noqa: N813
 
 
 def minify_svg(data: bytes) -> bytes:
-    return scour_string(
-        data.decode("utf-8"), options=SimpleNamespace(strip_ids=True, shorten_ids=True)
-    ).encode("utf-8")
+    return scour_string(data.decode("utf-8"), options=SimpleNamespace(strip_ids=True, shorten_ids=True)).encode("utf-8")
 
 
 def get_chart(
