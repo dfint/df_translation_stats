@@ -4,6 +4,7 @@ from pydantic import BaseModel, computed_field
 
 class Attributes(BaseModel):
     translated_strings: int
+    reviewed_strings: int
     total_strings: int
     last_translation_update: datetime | None = None
 
