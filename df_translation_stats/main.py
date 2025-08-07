@@ -5,16 +5,15 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 import os
 from pathlib import Path
-from types import SimpleNamespace
 from typing import Any, NewType
 
+from df_translation_stats.quickchart import get_chart
+from df_translation_stats.transifex import get_translation_stats
 from loguru import logger
-import httpx
 from dotenv import load_dotenv
 from langcodes import Language
-from scour.scour import scourString as scour_string  # noqa: N813
 
-from .models import TranslationStats
+from df_translation_stats.models import TranslationStats
 
 load_dotenv()
 
@@ -23,14 +22,6 @@ DEFAULT_LINE_HEIGHT = 14
 
 LanguageName = NewType("LanguageName", str)
 ResourceName = NewType("ResourceName", str)
-
-
-def get_translation_stats(project_id: str) -> TranslationStats:
-    tx_token = os.getenv("TX_TOKEN")
-    url = "https://rest.api.transifex.com/resource_language_stats"
-    headers = {"Authorization": f"Bearer {tx_token}"}
-    response = httpx.get(url, params={"filter[project]": project_id}, headers=headers)
-    return TranslationStats.model_validate(response.json())
 
 
 def filter_languages_by_minmal_translation_count(
@@ -135,51 +126,20 @@ def prepare_chart_data(dataset: Dataset) -> dict[str, Any]:
     )
 
 
-def get_chart(
-    chart_data: dict[str, Any],
-    file_format: str = "png",
-    width: int = 800,
-    height: int = 800,
-) -> bytes:
-    url = "https://quickchart.io/chart"
-    payload = dict(
-        width=width,
-        height=height,
-        backgroundColor="rgb(255, 255, 255)",
-        format=file_format,
-        chart=chart_data,
-    )
-
-    headers = {"Content-type": "application/json"}
-    response = httpx.post(url, json=payload, headers=headers, timeout=60)
-    response.raise_for_status()
-    return response.content
-
-
-def minify_svg(data: bytes) -> bytes:
-    return scour_string(
-        data.decode("utf-8"), options=SimpleNamespace(strip_ids=True, shorten_ids=True)
-    ).encode("utf-8")
-
-
 def generate_diagram(
     dataset: Dataset,
     width: int,
     height: int,
-    output: Path,
+    output_file: Path,
 ) -> None:
     chart_data = prepare_chart_data(dataset)
-    file_format = output.suffix[1:]
+    file_format = output_file.suffix[1:]
     chart = get_chart(chart_data, file_format=file_format, width=width, height=height)
-
-    if file_format == "svg":
-        chart = minify_svg(chart)
-
-    output.write_bytes(chart)
-    logger.info(f"{output.name} chart file is saved")
+    output_file.write_bytes(chart)
+    logger.info(f"{output_file.name} chart file is saved")
 
 
-def command_generate(
+def generate_one_diagram(
     output: Path,
     minimal_percent: int = 0,
     width: int = DEFAULT_WIDTH,
@@ -188,7 +148,8 @@ def command_generate(
     logger.info(f"output: {output.resolve()}")
     output.parent.mkdir(exist_ok=True, parents=True)
 
-    raw_data = get_translation_stats("o:dwarf-fortress-translation:p:dwarf-fortress-steam")
+    tx_token = os.getenv("TX_TOKEN")
+    raw_data = get_translation_stats(tx_token)
     dataset: Dataset = prepare_dataset(raw_data)
     count_by_language = dataset.get_count_by_languages()
 
@@ -202,14 +163,16 @@ def command_generate(
     dataset.sort_languages()
 
     for language in dataset.languages:
-        logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
+        logger.info(
+            f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%"
+        )
 
     height = height or (len(dataset.languages) + 6) * DEFAULT_LINE_HEIGHT
     generate_diagram(dataset, width, height, output)
 
 
 def main() -> None:
-    command_generate(Path("diagrams") / "dwarf-fortress-steam.svg")
+    generate_one_diagram(Path("diagrams") / "dwarf-fortress-steam.svg")
 
 
 if __name__ == "__main__":
