@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 
 
 class Attributes(BaseModel):
@@ -12,12 +12,14 @@ class ResourceLanguageStats(BaseModel):
     id: str
     attributes: Attributes
 
+    @computed_field
     @property
     def language_code(self) -> str:
         return self.id.split(":")[-1]
 
+    @computed_field
     @property
-    def resource_name(self) -> str:
+    def resource_code(self) -> str:
         return self.id.split(":")[-3]
 
 
