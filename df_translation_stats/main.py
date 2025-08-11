@@ -22,6 +22,10 @@ TX_TOKEN = os.getenv("TX_TOKEN")
 DEFAULT_WIDTH = 600
 DEFAULT_LINE_HEIGHT = 14
 
+NOTRANSLATE_TAGGED_STRINGS = {"hardcoded_steam": 568}
+
+MINIMAL_TRANSLATION_PERCENT = 1
+
 
 def prepare_dataset(raw_data: TranslationStats) -> Dataset:
     languages: set[LanguageName] = set()
@@ -35,16 +39,19 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
 
         language = Language.get(language_code).display_name()
         languages.add(language)
-        total_lines_by_resource[row.resource_info.resource] = max(
-            total_lines_by_resource.get(row.resource_info.resource, 0),
+        resource = row.resource_info.resource
+        total_lines_by_resource[resource] = max(
+            total_lines_by_resource.get(resource, 0),
             row.attributes.total_strings,
         )
-        resource_language_stats[row.resource_info.resource][language] = row.attributes.translated_strings
+        resource_language_stats[resource][language] = max(
+            row.attributes.translated_strings - NOTRANSLATE_TAGGED_STRINGS.get(resource, 0), 0
+        )
 
     return Dataset(
         data=resource_language_stats,
         languages=languages,
-        total_lines=sum(total_lines_by_resource.values()),
+        total_lines=sum(total_lines_by_resource.values()) - sum(NOTRANSLATE_TAGGED_STRINGS.values()),
     )
 
 
@@ -117,7 +124,7 @@ def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
 
-    dataset = dataset.with_minimal_translation_percent(2.5)
+    dataset = dataset.with_minimal_translation_percent(MINIMAL_TRANSLATION_PERCENT)
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
 
