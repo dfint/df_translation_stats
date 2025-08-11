@@ -35,7 +35,7 @@ jobs:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
         run: |
           pipx install poethepoet
-          poe two-diagrams
+          poe two_diagrams
 
       # - name: Commit changes
       #   if: ${{ !contains(fromJSON('["pull_request"]'), github.event_name) }}
