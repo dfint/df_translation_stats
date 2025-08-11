@@ -14,7 +14,7 @@ on:
       - main
 
 jobs:
-  dict:
+  diagrams:
     runs-on: ubuntu-latest
 
     steps:
