@@ -1,8 +1,17 @@
-name: Update dictionary manifest
+name: Build diagrams
 on:
   workflow_dispatch:
+
   schedule:
   - cron: "0 9,21 * * *"  # Run at 0am and 12pm GMT+3
+
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
 
 jobs:
   dict:
