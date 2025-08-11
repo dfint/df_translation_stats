@@ -37,10 +37,10 @@ jobs:
           pipx install poethepoet
           poe two_diagrams
 
-      # - name: Commit changes
-      #   if: ${{ !contains(fromJSON('["pull_request"]'), github.event_name) }}
-      #   uses: EndBug/add-and-commit@v9.1.4
-      #   with:
-      #     author_name: github-actions[bot]
-      #     author_email: 41898282+github-actions[bot]@users.noreply.github.com
-      #     message: "Update dictionary manifest"
+      - name: Commit changes
+        if: ${{ contains(fromJSON('["workflow_dispatch", "schedule"]'), github.event_name) }}
+        uses: EndBug/add-and-commit@v9.1.4
+        with:
+          author_name: github-actions[bot]
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "Update diagrams"
