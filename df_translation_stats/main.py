@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from langcodes import Language
 from loguru import logger
 
+from df_translation_stats.diagram.diagram import create_diagram
 from df_translation_stats.quickchart import Dataset, LanguageName, get_chart
 from df_translation_stats.transifex import get_translation_stats
 
@@ -45,7 +46,7 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
             row.attributes.total_strings,
         )
         resource_language_stats[resource][language] = max(
-            row.attributes.translated_strings - NOTRANSLATE_TAGGED_STRINGS.get(resource, 0), 0
+            row.attributes.translated_strings - NOTRANSLATE_TAGGED_STRINGS.get(resource, 0), 0,
         )
 
     return Dataset(
@@ -97,7 +98,8 @@ def one_diagram(
         logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
 
     height = height or calculate_height(dataset)
-    generate_diagram(dataset, width, height, output)
+    # generate_diagram(dataset, width, height, output)
+    create_diagram(dataset, width, height, output)
 
 
 def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
@@ -122,11 +124,13 @@ def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
 
     width = DEFAULT_WIDTH
     height = calculate_height(dataset)
-    generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
+    # generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
+    create_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
 
     dataset = dataset.with_minimal_translation_percent(MINIMAL_TRANSLATION_PERCENT)
     height = calculate_height(dataset)
-    generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
+    # generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
+    create_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
 
 
 if __name__ == "__main__":
