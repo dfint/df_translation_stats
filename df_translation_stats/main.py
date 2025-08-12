@@ -45,7 +45,7 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
             row.attributes.total_strings,
         )
         resource_language_stats[resource][language] = max(
-            row.attributes.translated_strings - NOTRANSLATE_TAGGED_STRINGS.get(resource, 0), 0
+            row.attributes.translated_strings - NOTRANSLATE_TAGGED_STRINGS.get(resource, 0), 0,
         )
 
     return Dataset(
