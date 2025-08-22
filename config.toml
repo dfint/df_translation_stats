@@ -1,7 +1,7 @@
 minimal_translation_percent = 1
 
 cache_path = "cache.json"
-output_dir = "diagrams"
+output_path = "diagrams/dwarf-fortress-steam.svg"
 
 [diagram]
 width = 600

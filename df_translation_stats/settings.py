@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     notranslate_tagged_strings: dict[str, int] = Field(default_factory=dict)
     minimal_translation_percent: float
 
-    output_dir: Path
+    output_path: Path
     cache_path: Path | None = None
 
     @classmethod

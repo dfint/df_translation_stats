@@ -35,7 +35,7 @@ jobs:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
         run: |
           pipx install poethepoet
-          poe two_diagrams
+          poe run
 
       - name: Commit changes
         if: ${{ contains(fromJSON('["workflow_dispatch", "schedule"]'), github.event_name) }}
