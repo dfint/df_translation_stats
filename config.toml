@@ -1,0 +1,9 @@
+diagram_width = 600
+diagram_line_height = 14
+minimal_tranlation_percent = 1
+
+cache_path = "cache.json"
+output_dir = "diagrams"
+
+[notranslate_tagged_strings]
+hardcoded_steam = 568

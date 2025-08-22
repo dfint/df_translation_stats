@@ -9,7 +9,7 @@ dependencies = [
     "langcodes>=3.5.0",
     "loguru>=0.7.3",
     "pydantic>=2.11.7",
-    "python-dotenv>=1.1.1",
+    "pydantic-settings>=2.10.1",
     "scour>=0.38.2",
 ]
 
