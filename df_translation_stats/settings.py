@@ -1,12 +1,15 @@
-
 from pathlib import Path
 from pydantic import Field
-from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict, TomlConfigSettingsSource
+from pydantic_settings import (
+    BaseSettings,
+    DotEnvSettingsSource,
+    EnvSettingsSource,
+    PydanticBaseSettingsSource,
+    TomlConfigSettingsSource,
+)
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(toml_file="config.toml", env_file=".env")
-
     tx_token: str | None = None
 
     diagram_width: int
@@ -23,12 +26,14 @@ class Settings(BaseSettings):
     def settings_customise_sources(
         cls,
         settings_cls: type[BaseSettings],
-        init_settings: PydanticBaseSettingsSource,
-        env_settings: PydanticBaseSettingsSource,
-        dotenv_settings: PydanticBaseSettingsSource,
-        file_secret_settings: PydanticBaseSettingsSource,
+        *_args,
+        **_kwargs,
     ) -> tuple[PydanticBaseSettingsSource, ...]:
-        return env_settings, dotenv_settings, TomlConfigSettingsSource(settings_cls)
+        return (
+            EnvSettingsSource(settings_cls),
+            DotEnvSettingsSource(settings_cls, env_file=".env"),
+            TomlConfigSettingsSource(settings_cls, toml_file="config.toml"),
+        )
 
 
 settings = Settings()
