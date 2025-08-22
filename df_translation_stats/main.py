@@ -1,30 +1,18 @@
 from __future__ import annotations
 
-import os
 from collections import defaultdict
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from dotenv import load_dotenv
 from langcodes import Language
 from loguru import logger
 
 from df_translation_stats.quickchart import Dataset, LanguageName, get_chart
 from df_translation_stats.transifex import get_translation_stats
+from df_translation_stats.settings import settings
 
 if TYPE_CHECKING:
     from df_translation_stats.transifex import TranslationStats
-
-load_dotenv()
-
-TX_TOKEN = os.getenv("TX_TOKEN")
-
-DEFAULT_WIDTH = 600
-DEFAULT_LINE_HEIGHT = 14
-
-NOTRANSLATE_TAGGED_STRINGS = {"hardcoded_steam": 568}
-
-MINIMAL_TRANSLATION_PERCENT = 1
 
 
 def prepare_dataset(raw_data: TranslationStats) -> Dataset:
@@ -45,13 +33,13 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
             row.attributes.total_strings,
         )
         resource_language_stats[resource][language] = max(
-            row.attributes.translated_strings - NOTRANSLATE_TAGGED_STRINGS.get(resource, 0), 0,
+            row.attributes.translated_strings - settings.notranslate_tagged_strings.get(resource, 0), 0,
         )
 
     return Dataset(
         data=resource_language_stats,
         languages=languages,
-        total_lines=sum(total_lines_by_resource.values()) - sum(NOTRANSLATE_TAGGED_STRINGS.values()),
+        total_lines=sum(total_lines_by_resource.values()) - sum(settings.notranslate_tagged_strings.values()),
     )
 
 
@@ -68,19 +56,15 @@ def generate_diagram(
 
 
 def calculate_height(dataset: Dataset) -> int:
-    return (len(dataset.languages) + 6) * DEFAULT_LINE_HEIGHT
+    return (len(dataset.languages) + 6) * settings.diagram_line_height
 
 
-def one_diagram(
-    output: Path = Path("diagrams") / "dwarf-fortress-steam.svg",
-    minimal_percent: int = 0,
-    width: int = DEFAULT_WIDTH,
-    height: int | None = None,
-) -> None:
+def one_diagram() -> None:
+    output = settings.output_dir / "dwarf-fortress-steam-short.svg"
     logger.info(f"output: {output.resolve()}")
     output.parent.mkdir(exist_ok=True, parents=True)
 
-    raw_data = get_translation_stats(TX_TOKEN)
+    raw_data = get_translation_stats()
     dataset: Dataset = prepare_dataset(raw_data)
     count_by_language = dataset.get_count_by_languages()
 
@@ -88,23 +72,23 @@ def one_diagram(
     logger.info(f"{dataset.languages=}")
     logger.info(f"{dataset.total_lines=}")
 
-    if minimal_percent:
-        dataset = dataset.with_minimal_translation_percent(minimal_percent)
+    dataset = dataset.with_minimal_translation_percent(settings.minimal_tranlation_percent)
 
     dataset.sort_languages()
 
     for language in dataset.languages:
         logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
 
-    height = height or calculate_height(dataset)
-    generate_diagram(dataset, width, height, output)
+    height = calculate_height(dataset)
+    generate_diagram(dataset, settings.diagram_width, height, output)
 
 
-def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
+def two_diagrams() -> None:
+    output_dir = settings.output_dir
     logger.info(f"output_dir: {output_dir.resolve()}")
     output_dir.mkdir(exist_ok=True, parents=True)
 
-    raw_data = get_translation_stats(TX_TOKEN)
+    raw_data = get_translation_stats()
     dataset: Dataset = prepare_dataset(raw_data)
     count_by_language = dataset.get_count_by_languages()
 
@@ -120,11 +104,11 @@ def two_diagrams(output_dir: Path = Path("diagrams")) -> None:
             f"({count_by_language[language]})",
         )
 
-    width = DEFAULT_WIDTH
+    width = settings.diagram_width
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
 
-    dataset = dataset.with_minimal_translation_percent(MINIMAL_TRANSLATION_PERCENT)
+    dataset = dataset.with_minimal_translation_percent(settings.minimal_tranlation_percent)
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
 
