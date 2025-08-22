@@ -57,7 +57,7 @@ def generate_diagram(
 
 
 def calculate_height(dataset: Dataset) -> int:
-    return (len(dataset.languages) + 6) * settings.diagram_line_height
+    return (len(dataset.languages) + 6) * settings.diagram.line_height
 
 
 def one_diagram() -> None:
@@ -81,7 +81,7 @@ def one_diagram() -> None:
         logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
 
     height = calculate_height(dataset)
-    generate_diagram(dataset, settings.diagram_width, height, output)
+    generate_diagram(dataset, settings.diagram.width, height, output)
 
 
 def two_diagrams() -> None:
@@ -105,7 +105,7 @@ def two_diagrams() -> None:
             f"({count_by_language[language]})",
         )
 
-    width = settings.diagram_width
+    width = settings.diagram.width
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
 

@@ -1,5 +1,5 @@
 from pathlib import Path
-from pydantic import Field
+from pydantic import BaseModel, Field
 from pydantic_settings import (
     BaseSettings,
     DotEnvSettingsSource,
@@ -9,14 +9,17 @@ from pydantic_settings import (
 )
 
 
+class DiagramSettings(BaseModel):
+    width: int
+    line_height: int
+
+
 class Settings(BaseSettings):
     tx_token: str | None = None
 
-    diagram_width: int
-    diagram_line_height: int
+    diagram: DiagramSettings
 
     notranslate_tagged_strings: dict[str, int] = Field(default_factory=dict)
-
     minimal_translation_percent: float
 
     output_dir: Path
