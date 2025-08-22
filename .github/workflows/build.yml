@@ -1,4 +1,4 @@
-name: Build diagrams
+name: Build diagram
 on:
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ on:
       - main
 
 jobs:
-  diagrams:
+  diagram:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,4 +43,4 @@ jobs:
         with:
           author_name: github-actions[bot]
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: "Update diagrams"
+          message: "Update diagram"
