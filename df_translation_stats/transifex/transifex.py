@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 
@@ -25,5 +26,5 @@ def get_translation_stats(tx_token: str) -> TranslationStats:
     response = httpx.get(url, params={"filter[project]": TX_PROJECT_ID}, headers=headers)
 
     response_text = response.text
-    CACHE_PATH.write_text(response_text)
+    CACHE_PATH.write_text(json.dumps(response.json(), indent=4, ensure_ascii=False))
     return TranslationStats.model_validate_json(response_text)
