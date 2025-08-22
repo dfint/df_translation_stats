@@ -14,7 +14,7 @@ class Settings(BaseSettings):
 
     notranslate_tagged_strings: dict[str, int] = Field(default_factory=dict)
 
-    minimal_tranlation_percent: float
+    minimal_translation_percent: float
 
     output_dir: Path
     cache_path: Path | None = None

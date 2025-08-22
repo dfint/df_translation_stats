@@ -72,7 +72,7 @@ def one_diagram() -> None:
     logger.info(f"{dataset.languages=}")
     logger.info(f"{dataset.total_lines=}")
 
-    dataset = dataset.with_minimal_translation_percent(settings.minimal_tranlation_percent)
+    dataset = dataset.with_minimal_translation_percent(settings.minimal_translation_percent)
 
     dataset.sort_languages()
 
@@ -108,7 +108,7 @@ def two_diagrams() -> None:
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam.svg")
 
-    dataset = dataset.with_minimal_translation_percent(settings.minimal_tranlation_percent)
+    dataset = dataset.with_minimal_translation_percent(settings.minimal_translation_percent)
     height = calculate_height(dataset)
     generate_diagram(dataset, width, height, output_dir / "dwarf-fortress-steam-short.svg")
 
