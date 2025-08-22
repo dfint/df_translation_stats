@@ -11,7 +11,7 @@ TX_PROJECT_ID = "o:dwarf-fortress-translation:p:dwarf-fortress-steam"
 
 def get_translation_stats() -> TranslationStats:
     if not settings.tx_token:
-        if not settings.cache_path.exists():
+        if not settings.cache_path.is_file():
             msg = "No Transifex token found, nor cached data is available."
             raise ValueError(msg)
 
