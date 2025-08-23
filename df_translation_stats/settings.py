@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     diagram: DiagramSettings
 
     notranslate_tagged_strings: dict[str, int] = Field(default_factory=dict)
-    minimal_translation_percent: float
+    minimal_translation_percent: float = 0
 
     output_path: Path
     cache_path: Path | None = None
