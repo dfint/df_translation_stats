@@ -7,20 +7,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:ar",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 100992,
-                "translated_words": 2504,
+                "untranslated_words": 100991,
+                "translated_words": 2505,
                 "reviewed_words": 2484,
                 "proofread_words": 0,
                 "total_words": 103496,
-                "untranslated_strings": 26264,
-                "translated_strings": 585,
+                "untranslated_strings": 26263,
+                "translated_strings": 586,
                 "reviewed_strings": 568,
                 "proofread_strings": 0,
                 "total_strings": 26849,
-                "last_translation_update": "2025-06-29T12:42:44Z",
+                "last_translation_update": "2025-09-15T00:03:20Z",
                 "last_review_update": "2025-06-29T12:42:44Z",
                 "last_proofread_update": null,
-                "last_update": "2025-06-29T12:42:44Z"
+                "last_update": "2025-09-15T00:03:20Z"
             },
             "relationships": {
                 "resource": {
@@ -404,10 +404,10 @@
                 "reviewed_strings": 568,
                 "proofread_strings": 0,
                 "total_strings": 26849,
-                "last_translation_update": "2025-09-10T05:27:52Z",
+                "last_translation_update": "2025-09-15T02:02:21Z",
                 "last_review_update": "2025-06-29T12:42:44Z",
                 "last_proofread_update": null,
-                "last_update": "2025-09-10T05:27:52Z"
+                "last_update": "2025-09-15T02:02:21Z"
             },
             "relationships": {
                 "resource": {
