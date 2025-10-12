@@ -12,18 +12,18 @@ ResourceName = NewType("ResourceName", str)
 
 @dataclass
 class Dataset:
-    data: dict[ResourceName, dict[LanguageName, float]]
-    languages: list[LanguageName]
+    data: dict[str, dict[str, int]]
+    languages: list[str]
     total_lines: int
 
     @property
-    def resources(self) -> list[ResourceName]:
+    def resources(self) -> list[str]:
         return list(self.data.keys())
 
-    def with_languages(self, languages: list[LanguageName]) -> Dataset:
+    def with_languages(self, languages: list[str]) -> Dataset:
         return Dataset(data=self.data, languages=languages, total_lines=self.total_lines)
 
-    def get_count_by_languages(self) -> dict[LanguageName, int]:
+    def get_count_by_languages(self) -> dict[str, int]:
         return {language: sum(item[language] for item in self.data.values()) for language in self.languages}
 
     def sort_languages(self) -> None:
@@ -35,10 +35,10 @@ class Dataset:
 
     @staticmethod
     def filter_languages_by_minmal_translation_count(
-        languages: Iterable[LanguageName],
-        count_by_language: dict[LanguageName, int],
-        minimal_count: int,
-    ) -> list[LanguageName]:
+        languages: Iterable[str],
+        count_by_language: dict[str, int],
+        minimal_count: float,
+    ) -> list[str]:
         return [language for language in languages if count_by_language[language] > minimal_count]
 
     def with_minimal_translation_percent(self, minimal_percent: float) -> Dataset:

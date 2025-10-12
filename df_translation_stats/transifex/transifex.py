@@ -12,7 +12,7 @@ TX_PROJECT_ID = "o:dwarf-fortress-translation:p:dwarf-fortress-steam"
 
 def get_translation_stats() -> TranslationStats:
     if not settings.tx_token:
-        if not settings.cache_path.is_file():
+        if not settings.cache_path or not settings.cache_path.is_file():
             msg = "No Transifex token found, nor cached data is available."
             raise ValueError(msg)
 
@@ -24,7 +24,8 @@ def get_translation_stats() -> TranslationStats:
     response = httpx.get(url, params={"filter[project]": TX_PROJECT_ID}, headers=headers)
 
     response_text = response.text
-    settings.cache_path.write_text(json.dumps(response.json(), indent=4, ensure_ascii=False))
+    if settings.cache_path:
+        settings.cache_path.write_text(json.dumps(response.json(), indent=4, ensure_ascii=False))
     return TranslationStats.model_validate_json(response_text)
 
 

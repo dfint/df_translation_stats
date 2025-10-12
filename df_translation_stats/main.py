@@ -7,8 +7,8 @@ from typing import TYPE_CHECKING
 from langcodes import Language
 from loguru import logger
 
-from df_translation_stats.quickchart import Dataset, LanguageName, get_chart
-from df_translation_stats.transifex import get_translation_stats, get_resource_strings_tagged_notranslate
+from df_translation_stats.quickchart import Dataset, get_chart
+from df_translation_stats.transifex import get_resource_strings_tagged_notranslate, get_translation_stats
 from df_translation_stats.settings import settings
 
 if TYPE_CHECKING:
@@ -23,9 +23,9 @@ def get_notranslate_tagged_strings_count(resources: list[str]) -> dict[str, int]
 
 
 def prepare_dataset(raw_data: TranslationStats) -> Dataset:
-    languages: set[LanguageName] = set()
+    languages: set[str] = set()
     total_lines_by_resource: dict[str, int] = {}
-    resource_language_stats = defaultdict(lambda: defaultdict(int))
+    resource_language_stats: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for row in raw_data.data:
         language_code = row.resource_info.language_code
@@ -46,7 +46,7 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
 
     return Dataset(
         data=resource_language_stats,
-        languages=languages,
+        languages=list(languages),
         total_lines=sum(total_lines_by_resource.values()) - sum(settings.notranslate_tagged_strings.values()),
     )
 
