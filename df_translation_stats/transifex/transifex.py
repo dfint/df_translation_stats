@@ -1,4 +1,5 @@
 import json
+from typing import Any
 
 import httpx
 from loguru import logger
@@ -25,3 +26,20 @@ def get_translation_stats() -> TranslationStats:
     response_text = response.text
     settings.cache_path.write_text(json.dumps(response.json(), indent=4, ensure_ascii=False))
     return TranslationStats.model_validate_json(response_text)
+
+
+def get_resource_strings_tagged_notranslate(resource: str) -> list[dict[str, Any]]:
+    if not settings.tx_token:
+        msg = "No Transifex token found."
+        raise ValueError(msg)
+
+    url = "https://rest.api.transifex.com/resource_strings"
+    headers = {"Authorization": f"Bearer {settings.tx_token}"}
+    response = httpx.get(url, params={
+        "filter[resource]": f"{TX_PROJECT_ID}:r:{resource}",
+        "filter[tags][all]": "notranslate",
+    }, headers=headers)
+
+    response_json = response.json()
+    # settings.cache_path.write_text(json.dumps(response_json, indent=4, ensure_ascii=False))
+    return response_json

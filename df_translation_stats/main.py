@@ -8,11 +8,18 @@ from langcodes import Language
 from loguru import logger
 
 from df_translation_stats.quickchart import Dataset, LanguageName, get_chart
-from df_translation_stats.transifex import get_translation_stats
+from df_translation_stats.transifex import get_translation_stats, get_resource_strings_tagged_notranslate
 from df_translation_stats.settings import settings
 
 if TYPE_CHECKING:
     from df_translation_stats.transifex import TranslationStats
+
+
+def get_notranslate_tagged_strings_count(resources: list[str]) -> dict[str, int]:
+    result = dict()
+    for resource in resources:
+        result[resource] = len(get_resource_strings_tagged_notranslate(resource))
+    return result
 
 
 def prepare_dataset(raw_data: TranslationStats) -> Dataset:
