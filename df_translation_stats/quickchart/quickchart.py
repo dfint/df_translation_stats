@@ -46,7 +46,7 @@ def prepare_chart_data(dataset: Dataset) -> dict[str, Any]:
     )
 
 
-def get_chart(
+async def get_chart(
     dataset: Dataset,
     file_format: str = "png",
     width: int = 800,
@@ -64,9 +64,10 @@ def get_chart(
     )
 
     headers = {"Content-type": "application/json"}
-    response = httpx.post(url, json=payload, headers=headers, timeout=60)
-    response.raise_for_status()
-    chart = response.content
+    async with httpx.AsyncClient() as client:
+        response = await client.post(url, json=payload, headers=headers, timeout=60)
+        response.raise_for_status()
+        chart = response.content
 
     if file_format == "svg":
         chart = minify_svg(chart)

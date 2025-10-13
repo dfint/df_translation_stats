@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import asyncio
 from collections import defaultdict
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+import httpx
 from langcodes import Language
 from loguru import logger
 
@@ -15,11 +17,13 @@ if TYPE_CHECKING:
     from df_translation_stats.transifex import TranslationStats
 
 
-def get_notranslate_tagged_strings_count(resources: list[str]) -> dict[str, int]:
-    result = dict()
-    for resource in resources:
-        result[resource] = len(get_resource_strings_tagged_notranslate(resource))
-    return result
+async def get_count(client: httpx.AsyncClient, resource: str) -> int:
+    return len(await get_resource_strings_tagged_notranslate(client, resource))
+
+
+async def get_notranslate_tagged_strings_count(client: httpx.AsyncClient, resources: list[str]) -> dict[str, int]:
+    results = await asyncio.gather(*(get_count(client, resource) for resource in resources))
+    return {resource: count for resource, count in zip(resources, results)}
 
 
 def prepare_dataset(raw_data: TranslationStats) -> Dataset:
@@ -51,14 +55,14 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
     )
 
 
-def generate_diagram(
+async def generate_diagram(
     dataset: Dataset,
     width: int,
     height: int,
     output_file: Path,
 ) -> None:
     file_format = output_file.suffix[1:]
-    chart = get_chart(dataset, file_format=file_format, width=width, height=height)
+    chart = await get_chart(dataset, file_format=file_format, width=width, height=height)
     output_file.write_bytes(chart)
     logger.info(f"{output_file.name} chart file is saved")
 
@@ -67,12 +71,13 @@ def calculate_height(dataset: Dataset) -> int:
     return (len(dataset.languages) + 6) * settings.diagram.line_height
 
 
-def one_diagram() -> None:
+async def one_diagram() -> None:
     output = settings.output_path
     logger.info(f"output: {output.resolve()}")
     output.parent.mkdir(exist_ok=True, parents=True)
 
-    raw_data = get_translation_stats()
+    async with httpx.AsyncClient() as client:
+        raw_data = await get_translation_stats(client)
     dataset: Dataset = prepare_dataset(raw_data)
     count_by_language = dataset.get_count_by_languages()
 
@@ -88,8 +93,8 @@ def one_diagram() -> None:
         logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
 
     height = calculate_height(dataset)
-    generate_diagram(dataset, settings.diagram.width, height, output)
+    await generate_diagram(dataset, settings.diagram.width, height, output)
 
 
 if __name__ == "__main__":
-    one_diagram()
+    asyncio.run(one_diagram())
