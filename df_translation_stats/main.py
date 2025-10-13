@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 from collections import defaultdict
+from collections.abc import Iterable
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -21,7 +22,7 @@ async def get_count(client: httpx.AsyncClient, resource: str) -> int:
     return len(await get_resource_strings_tagged_notranslate(client, resource))
 
 
-async def get_notranslate_tagged_strings_count(client: httpx.AsyncClient, resources: list[str]) -> dict[str, int]:
+async def get_notranslate_tagged_strings_count(client: httpx.AsyncClient, resources: Iterable[str]) -> dict[str, int]:
     results = await asyncio.gather(*(get_count(client, resource) for resource in resources))
     return {resource: count for resource, count in zip(resources, results)}
 
@@ -78,15 +79,16 @@ async def one_diagram() -> None:
 
     async with httpx.AsyncClient() as client:
         raw_data = await get_translation_stats(client)
-    dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
-    count_by_language = dataset.get_count_by_languages()
+        dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
+        notranslate_tagged_strings = await get_notranslate_tagged_strings_count(client, dataset.resources)
+        logger.info(f"{notranslate_tagged_strings=}")
 
     logger.info(f"{dataset.resources=}")
     logger.info(f"{dataset.languages=}")
     logger.info(f"{dataset.total_lines=}")
 
     dataset = dataset.with_minimal_translation_percent(settings.minimal_translation_percent)
-
+    count_by_language = dataset.get_count_by_languages()
     dataset.sort_languages()
 
     for language in dataset.languages:
