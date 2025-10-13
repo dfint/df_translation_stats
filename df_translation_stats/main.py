@@ -26,7 +26,7 @@ async def get_notranslate_tagged_strings_count(client: httpx.AsyncClient, resour
     return {resource: count for resource, count in zip(resources, results)}
 
 
-def prepare_dataset(raw_data: TranslationStats) -> Dataset:
+def prepare_dataset(raw_data: TranslationStats, notranslate_tagged_strings: dict[str, int]) -> Dataset:
     languages: set[str] = set()
     total_lines_by_resource: dict[str, int] = {}
     resource_language_stats: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
@@ -44,14 +44,14 @@ def prepare_dataset(raw_data: TranslationStats) -> Dataset:
             row.attributes.total_strings,
         )
         resource_language_stats[resource][language] = max(
-            row.attributes.translated_strings - settings.notranslate_tagged_strings.get(resource, 0),
+            row.attributes.translated_strings - notranslate_tagged_strings.get(resource, 0),
             0,
         )
 
     return Dataset(
         data=resource_language_stats,
         languages=list(languages),
-        total_lines=sum(total_lines_by_resource.values()) - sum(settings.notranslate_tagged_strings.values()),
+        total_lines=sum(total_lines_by_resource.values()) - sum(notranslate_tagged_strings.values()),
     )
 
 
@@ -78,7 +78,7 @@ async def one_diagram() -> None:
 
     async with httpx.AsyncClient() as client:
         raw_data = await get_translation_stats(client)
-    dataset: Dataset = prepare_dataset(raw_data)
+    dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
     count_by_language = dataset.get_count_by_languages()
 
     logger.info(f"{dataset.resources=}")
