@@ -738,20 +738,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:ko",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 19930,
-                "translated_words": 81833,
+                "untranslated_words": 19921,
+                "translated_words": 81842,
                 "reviewed_words": 3468,
                 "proofread_words": 0,
                 "total_words": 101763,
-                "untranslated_strings": 4568,
-                "translated_strings": 21484,
+                "untranslated_strings": 4563,
+                "translated_strings": 21489,
                 "reviewed_strings": 906,
                 "proofread_strings": 0,
                 "total_strings": 26052,
-                "last_translation_update": "2025-10-15T10:27:01Z",
+                "last_translation_update": "2025-10-24T13:28:48Z",
                 "last_review_update": "2025-10-15T10:27:01Z",
                 "last_proofread_update": null,
-                "last_update": "2025-10-15T10:27:01Z"
+                "last_update": "2025-10-24T13:28:48Z"
             },
             "relationships": {
                 "resource": {
