@@ -83,8 +83,8 @@ async def one_diagram() -> None:
         try:
             notranslate_tagged_strings = await get_notranslate_tagged_strings_count(client, dataset.resources)
             logger.info(f"{notranslate_tagged_strings=}")
-        except ValueError:
-            pass
+        except ValueError as ex:
+            logger.exception(ex)
 
     logger.info(f"{dataset.resources=}")
     logger.info(f"{dataset.languages=}")
