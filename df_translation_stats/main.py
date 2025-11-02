@@ -80,8 +80,11 @@ async def one_diagram() -> None:
     async with httpx.AsyncClient() as client:
         raw_data = await get_translation_stats(client)
         dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
-        notranslate_tagged_strings = await get_notranslate_tagged_strings_count(client, dataset.resources)
-        logger.info(f"{notranslate_tagged_strings=}")
+        try:
+            notranslate_tagged_strings = await get_notranslate_tagged_strings_count(client, dataset.resources)
+            logger.info(f"{notranslate_tagged_strings=}")
+        except ValueError:
+            pass
 
     logger.info(f"{dataset.resources=}")
     logger.info(f"{dataset.languages=}")
