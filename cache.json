@@ -996,20 +996,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:pt_BR",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 641,
-                "translated_words": 101122,
+                "untranslated_words": 584,
+                "translated_words": 101179,
                 "reviewed_words": 4827,
                 "proofread_words": 0,
                 "total_words": 101763,
-                "untranslated_strings": 261,
-                "translated_strings": 25791,
+                "untranslated_strings": 228,
+                "translated_strings": 25824,
                 "reviewed_strings": 1383,
                 "proofread_strings": 0,
                 "total_strings": 26052,
-                "last_translation_update": "2025-11-04T03:54:37Z",
+                "last_translation_update": "2025-11-04T20:08:46Z",
                 "last_review_update": "2025-10-15T10:27:01Z",
                 "last_proofread_update": null,
-                "last_update": "2025-11-04T03:54:37Z"
+                "last_update": "2025-11-04T20:08:46Z"
             },
             "relationships": {
                 "resource": {
