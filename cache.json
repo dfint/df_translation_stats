@@ -1084,18 +1084,18 @@
             "attributes": {
                 "untranslated_words": 129,
                 "translated_words": 102109,
-                "reviewed_words": 22742,
+                "reviewed_words": 22866,
                 "proofread_words": 0,
                 "total_words": 102238,
                 "untranslated_strings": 83,
                 "translated_strings": 26075,
-                "reviewed_strings": 6536,
+                "reviewed_strings": 6585,
                 "proofread_strings": 0,
                 "total_strings": 26158,
-                "last_translation_update": "2025-11-09T13:38:49Z",
-                "last_review_update": "2025-11-09T13:36:10Z",
+                "last_translation_update": "2025-11-17T16:52:22Z",
+                "last_review_update": "2025-11-17T16:52:35Z",
                 "last_proofread_update": null,
-                "last_update": "2025-11-09T13:38:49Z"
+                "last_update": "2025-11-17T16:52:35Z"
             },
             "relationships": {
                 "resource": {
