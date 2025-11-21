@@ -1340,20 +1340,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:uk",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 90091,
-                "translated_words": 12188,
+                "untranslated_words": 90072,
+                "translated_words": 12207,
                 "reviewed_words": 3886,
                 "proofread_words": 0,
                 "total_words": 102279,
-                "untranslated_strings": 21409,
-                "translated_strings": 4772,
+                "untranslated_strings": 21404,
+                "translated_strings": 4777,
                 "reviewed_strings": 1066,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2025-11-18T20:14:16Z",
+                "last_translation_update": "2025-11-21T14:36:11Z",
                 "last_review_update": "2025-11-18T20:14:16Z",
                 "last_proofread_update": null,
-                "last_update": "2025-11-18T20:14:16Z"
+                "last_update": "2025-11-21T14:36:11Z"
             },
             "relationships": {
                 "resource": {
