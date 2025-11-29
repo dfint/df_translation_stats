@@ -1127,18 +1127,18 @@
             "attributes": {
                 "untranslated_words": 120,
                 "translated_words": 102159,
-                "reviewed_words": 22924,
+                "reviewed_words": 22925,
                 "proofread_words": 0,
                 "total_words": 102279,
                 "untranslated_strings": 74,
                 "translated_strings": 26107,
-                "reviewed_strings": 6612,
+                "reviewed_strings": 6613,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2025-11-19T05:42:41Z",
-                "last_review_update": "2025-11-18T20:14:16Z",
+                "last_translation_update": "2025-11-29T19:32:41Z",
+                "last_review_update": "2025-11-29T19:32:43Z",
                 "last_proofread_update": null,
-                "last_update": "2025-11-19T05:42:41Z"
+                "last_update": "2025-11-29T19:32:43Z"
             },
             "relationships": {
                 "resource": {
