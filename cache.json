@@ -1,6 +1,7 @@
 {
     "links": {
-        "self": "https://rest.api.transifex.com/resource_language_stats?filter%5Bproject%5D=o%3Adwarf-fortress-translation%3Ap%3Adwarf-fortress-steam"
+        "self": "https://rest.api.transifex.com/resource_language_stats?filter%5Bproject%5D=o%3Adwarf-fortress-translation%3Ap%3Adwarf-fortress-steam",
+        "next": "https://rest.api.transifex.com/resource_language_stats?filter%5Bproject%5D=o%3Adwarf-fortress-translation%3Ap%3Adwarf-fortress-steam&page%5Bcursor%5D=WzEsIFsiNTgzODg0MyIsICIyNyJdXQ%3D%3D"
     },
     "data": [
         {
@@ -5935,6 +5936,522 @@
             },
             "links": {
                 "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:text_set:l:ab"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:ar",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:ar"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:ar"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:ar"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:be",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:be"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:be"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:be"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:bg",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:bg"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:bg"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:bg"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:ca",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:ca"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:ca"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:ca"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:cs",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:cs"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:cs"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:cs"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:da",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:da"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:da"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:da"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:de",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:de"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:de"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:de"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:el",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:el"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:el"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:el"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:en",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 0,
+                "translated_words": 3156,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 0,
+                "translated_strings": 1533,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": "2025-12-19T21:21:23Z",
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:en"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:en"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:en"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:es",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:es"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:es"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:es"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:eu",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:eu"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:eu"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:eu"
+            }
+        },
+        {
+            "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:fi",
+            "type": "resource_language_stats",
+            "attributes": {
+                "untranslated_words": 3156,
+                "translated_words": 0,
+                "reviewed_words": 0,
+                "proofread_words": 0,
+                "total_words": 3156,
+                "untranslated_strings": 1533,
+                "translated_strings": 0,
+                "reviewed_strings": 0,
+                "proofread_strings": 0,
+                "total_strings": 1533,
+                "last_translation_update": null,
+                "last_review_update": null,
+                "last_proofread_update": null,
+                "last_update": "2025-12-19T21:21:23Z"
+            },
+            "relationships": {
+                "resource": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/resources/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    },
+                    "data": {
+                        "type": "resources",
+                        "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua"
+                    }
+                },
+                "language": {
+                    "links": {
+                        "related": "https://rest.api.transifex.com/languages/l:fi"
+                    },
+                    "data": {
+                        "type": "languages",
+                        "id": "l:fi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://rest.api.transifex.com/resource_language_stats/o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:fi"
             }
         }
     ]
