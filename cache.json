@@ -6200,20 +6200,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:de",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 3237,
-                "translated_words": 152,
+                "untranslated_words": 3209,
+                "translated_words": 180,
                 "reviewed_words": 2,
                 "proofread_words": 0,
                 "total_words": 3389,
-                "untranslated_strings": 1633,
-                "translated_strings": 151,
+                "untranslated_strings": 1605,
+                "translated_strings": 179,
                 "reviewed_strings": 2,
                 "proofread_strings": 0,
                 "total_strings": 1784,
-                "last_translation_update": "2025-12-26T20:41:17Z",
+                "last_translation_update": "2025-12-27T22:43:45Z",
                 "last_review_update": "2025-12-22T18:06:42Z",
                 "last_proofread_update": null,
-                "last_update": "2025-12-26T20:41:17Z"
+                "last_update": "2025-12-27T22:43:45Z"
             },
             "relationships": {
                 "resource": {
