@@ -3319,20 +3319,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:objects:l:tr",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 32644,
-                "translated_words": 215,
+                "untranslated_words": 15972,
+                "translated_words": 16887,
                 "reviewed_words": 0,
                 "proofread_words": 0,
                 "total_words": 32859,
-                "untranslated_strings": 10639,
-                "translated_strings": 85,
+                "untranslated_strings": 5392,
+                "translated_strings": 5332,
                 "reviewed_strings": 0,
                 "proofread_strings": 0,
                 "total_strings": 10724,
-                "last_translation_update": "2025-11-26T14:20:08Z",
+                "last_translation_update": "2025-12-31T17:58:24Z",
                 "last_review_update": "2023-09-22T17:46:37Z",
                 "last_proofread_update": null,
-                "last_update": "2025-11-26T14:20:08Z"
+                "last_update": "2025-12-31T17:58:24Z"
             },
             "relationships": {
                 "resource": {
