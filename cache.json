@@ -3405,20 +3405,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:objects:l:vi",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 28496,
-                "translated_words": 4363,
+                "untranslated_words": 2722,
+                "translated_words": 30137,
                 "reviewed_words": 0,
                 "proofread_words": 0,
                 "total_words": 32859,
-                "untranslated_strings": 9272,
-                "translated_strings": 1452,
+                "untranslated_strings": 1996,
+                "translated_strings": 8728,
                 "reviewed_strings": 0,
                 "proofread_strings": 0,
                 "total_strings": 10724,
-                "last_translation_update": "2025-03-06T15:55:52Z",
+                "last_translation_update": "2026-01-03T11:08:18Z",
                 "last_review_update": "2023-09-22T17:46:37Z",
                 "last_proofread_update": null,
-                "last_update": "2025-03-06T15:55:52Z"
+                "last_update": "2026-01-03T11:08:18Z"
             },
             "relationships": {
                 "resource": {
