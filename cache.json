@@ -1427,20 +1427,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:vi",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 97378,
-                "translated_words": 4901,
-                "reviewed_words": 3555,
+                "untranslated_words": 516,
+                "translated_words": 101763,
+                "reviewed_words": 3552,
                 "proofread_words": 0,
                 "total_words": 102279,
-                "untranslated_strings": 24640,
-                "translated_strings": 1541,
-                "reviewed_strings": 952,
+                "untranslated_strings": 442,
+                "translated_strings": 25739,
+                "reviewed_strings": 949,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2025-11-18T20:14:16Z",
-                "last_review_update": "2025-11-18T20:14:16Z",
+                "last_translation_update": "2026-01-03T10:13:40Z",
+                "last_review_update": "2026-01-03T10:13:40Z",
                 "last_proofread_update": null,
-                "last_update": "2025-11-18T20:14:16Z"
+                "last_update": "2026-01-03T10:13:40Z"
             },
             "relationships": {
                 "resource": {
