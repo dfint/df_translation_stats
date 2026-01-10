@@ -266,20 +266,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:de",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 7325,
-                "translated_words": 94954,
+                "untranslated_words": 6869,
+                "translated_words": 95410,
                 "reviewed_words": 4717,
                 "proofread_words": 0,
                 "total_words": 102279,
-                "untranslated_strings": 1560,
-                "translated_strings": 24621,
+                "untranslated_strings": 1538,
+                "translated_strings": 24643,
                 "reviewed_strings": 1206,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2026-01-09T13:39:05Z",
+                "last_translation_update": "2026-01-10T19:44:28Z",
                 "last_review_update": "2025-11-18T20:14:16Z",
                 "last_proofread_update": null,
-                "last_update": "2026-01-09T13:39:05Z"
+                "last_update": "2026-01-10T19:44:28Z"
             },
             "relationships": {
                 "resource": {
@@ -1341,20 +1341,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:tr",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 31901,
-                "translated_words": 70378,
+                "untranslated_words": 11478,
+                "translated_words": 90801,
                 "reviewed_words": 3555,
                 "proofread_words": 0,
                 "total_words": 102279,
-                "untranslated_strings": 6172,
-                "translated_strings": 20009,
+                "untranslated_strings": 934,
+                "translated_strings": 25247,
                 "reviewed_strings": 952,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2026-01-09T14:11:09Z",
+                "last_translation_update": "2026-01-10T18:12:11Z",
                 "last_review_update": "2025-11-18T20:14:16Z",
                 "last_proofread_update": null,
-                "last_update": "2026-01-09T14:11:09Z"
+                "last_update": "2026-01-10T18:12:11Z"
             },
             "relationships": {
                 "resource": {
@@ -4232,10 +4232,10 @@
                 "reviewed_strings": 0,
                 "proofread_strings": 0,
                 "total_strings": 354,
-                "last_translation_update": "2025-03-24T02:09:05Z",
+                "last_translation_update": "2026-01-10T11:19:40Z",
                 "last_review_update": null,
                 "last_proofread_update": null,
-                "last_update": "2025-03-24T02:09:05Z"
+                "last_update": "2026-01-10T11:19:40Z"
             },
             "relationships": {
                 "resource": {
