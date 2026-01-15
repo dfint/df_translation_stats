@@ -266,20 +266,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:de",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 5685,
-                "translated_words": 96594,
+                "untranslated_words": 5654,
+                "translated_words": 96625,
                 "reviewed_words": 4717,
                 "proofread_words": 0,
                 "total_words": 102279,
-                "untranslated_strings": 1395,
-                "translated_strings": 24786,
+                "untranslated_strings": 1394,
+                "translated_strings": 24787,
                 "reviewed_strings": 1206,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2026-01-15T07:19:47Z",
+                "last_translation_update": "2026-01-15T18:35:23Z",
                 "last_review_update": "2025-11-18T20:14:16Z",
                 "last_proofread_update": null,
-                "last_update": "2026-01-15T07:19:47Z"
+                "last_update": "2026-01-15T18:35:23Z"
             },
             "relationships": {
                 "resource": {
@@ -1126,20 +1126,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:hardcoded_steam:l:ru",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 120,
-                "translated_words": 102159,
+                "untranslated_words": 119,
+                "translated_words": 102160,
                 "reviewed_words": 22925,
                 "proofread_words": 0,
                 "total_words": 102279,
-                "untranslated_strings": 74,
-                "translated_strings": 26107,
+                "untranslated_strings": 73,
+                "translated_strings": 26108,
                 "reviewed_strings": 6613,
                 "proofread_strings": 0,
                 "total_strings": 26181,
-                "last_translation_update": "2025-12-02T06:07:08Z",
+                "last_translation_update": "2026-01-15T17:05:23Z",
                 "last_review_update": "2025-11-29T19:32:43Z",
                 "last_proofread_update": null,
-                "last_update": "2025-12-02T06:07:08Z"
+                "last_update": "2026-01-15T17:05:23Z"
             },
             "relationships": {
                 "resource": {
@@ -2254,10 +2254,10 @@
                 "reviewed_strings": 0,
                 "proofread_strings": 0,
                 "total_strings": 10724,
-                "last_translation_update": "2026-01-06T20:16:58Z",
+                "last_translation_update": "2026-01-15T18:31:10Z",
                 "last_review_update": "2023-09-22T17:46:37Z",
                 "last_proofread_update": null,
-                "last_update": "2026-01-06T20:16:58Z"
+                "last_update": "2026-01-15T18:31:10Z"
             },
             "relationships": {
                 "resource": {
@@ -6200,20 +6200,20 @@
             "id": "o:dwarf-fortress-translation:p:dwarf-fortress-steam:r:lua:l:de",
             "type": "resource_language_stats",
             "attributes": {
-                "untranslated_words": 2435,
-                "translated_words": 954,
+                "untranslated_words": 690,
+                "translated_words": 2699,
                 "reviewed_words": 2,
                 "proofread_words": 0,
                 "total_words": 3389,
-                "untranslated_strings": 1092,
-                "translated_strings": 692,
+                "untranslated_strings": 411,
+                "translated_strings": 1373,
                 "reviewed_strings": 2,
                 "proofread_strings": 0,
                 "total_strings": 1784,
-                "last_translation_update": "2026-01-15T07:47:24Z",
+                "last_translation_update": "2026-01-15T18:18:53Z",
                 "last_review_update": "2025-12-22T18:06:42Z",
                 "last_proofread_update": null,
-                "last_update": "2026-01-15T07:47:24Z"
+                "last_update": "2026-01-15T18:18:53Z"
             },
             "relationships": {
                 "resource": {
