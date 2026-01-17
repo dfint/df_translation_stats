@@ -2,6 +2,9 @@ name: Build diagram
 on:
   workflow_dispatch:
 
+  repository_dispatch:
+    types: [update]
+
   schedule:
   - cron: "0 9,21 * * *"  # Run at 0am and 12pm GMT+3
 
@@ -41,7 +44,7 @@ jobs:
           poe run
 
       - name: Commit changes
-        if: ${{ contains(fromJSON('["workflow_dispatch", "schedule"]'), github.event_name) }}
+        if: ${{ contains(fromJSON('["workflow_dispatch", "schedule", "repository_dispatch"]'), github.event_name) }}
         uses: EndBug/add-and-commit@v9.1.4
         with:
           author_name: github-actions[bot]
