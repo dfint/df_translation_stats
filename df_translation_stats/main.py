@@ -11,6 +11,7 @@ from langcodes import Language
 from loguru import logger
 
 from df_translation_stats.quickchart import Dataset, get_chart
+from df_translation_stats.stats.po_stats import PoStatsService
 from df_translation_stats.stats.transifex import TransifexStatsService
 from df_translation_stats.settings import settings
 
@@ -74,19 +75,17 @@ def calculate_height(dataset: Dataset) -> int:
 
 
 async def one_diagram() -> None:
-    output = settings.output_path
-    logger.info(f"output: {output.resolve()}")
-    output.parent.mkdir(exist_ok=True, parents=True)
+    input_path = settings.input_path
+    assert input_path is not None and input_path.exists()
+    logger.info(f"input_path: {input_path.resolve()}")
 
-    async with httpx.AsyncClient() as client:
-        service = TransifexStatsService(client)
-        raw_data = await service.get_translation_stats()
-        dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
-        try:
-            notranslate_tagged_strings = await get_notranslate_tagged_strings_count(service, dataset.resources)
-            logger.info(f"{notranslate_tagged_strings=}")
-        except ValueError as ex:
-            logger.exception(ex)
+    output_path = settings.output_path
+    logger.info(f"output_path: {output_path.resolve()}")
+    output_path.parent.mkdir(exist_ok=True, parents=True)
+
+    service = PoStatsService(input_path)
+    raw_data = await service.get_translation_stats()
+    dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
 
     logger.info(f"{dataset.resources=}")
     logger.info(f"{dataset.languages=}")
@@ -100,7 +99,7 @@ async def one_diagram() -> None:
         logger.info(f"{language}: {count_by_language[language] / dataset.total_lines * 100:.1f}%")
 
     height = calculate_height(dataset)
-    await generate_diagram(dataset, settings.diagram.width, height, output)
+    await generate_diagram(dataset, settings.diagram.width, height, output_path)
 
 
 if __name__ == "__main__":

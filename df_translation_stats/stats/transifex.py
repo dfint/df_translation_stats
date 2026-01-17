@@ -12,7 +12,7 @@ TX_PROJECT_ID = "o:dwarf-fortress-translation:p:dwarf-fortress-steam"
 
 class TransifexStatsService:
     client: httpx.AsyncClient
-    
+
     def __init__(self, client: httpx.AsyncClient):
         self.client = client
 
@@ -34,7 +34,6 @@ class TransifexStatsService:
             settings.cache_path.write_text(json.dumps(response.json(), indent=4, ensure_ascii=False))
         return TranslationStats.model_validate_json(response_text)
 
-
     async def get_resource_strings_tagged_notranslate(self, resource: str) -> list[dict[str, Any]]:
         if not settings.tx_token:
             msg = "No Transifex token found."
@@ -42,10 +41,14 @@ class TransifexStatsService:
 
         url = "https://rest.api.transifex.com/resource_strings"
         headers = {"Authorization": f"Bearer {settings.tx_token}"}
-        response = await self.client.get(url, params={
-            "filter[resource]": f"{TX_PROJECT_ID}:r:{resource}",
-            "filter[tags][all]": "notranslate",
-        }, headers=headers)
+        response = await self.client.get(
+            url,
+            params={
+                "filter[resource]": f"{TX_PROJECT_ID}:r:{resource}",
+                "filter[tags][all]": "notranslate",
+            },
+            headers=headers,
+        )
 
         response_json = response.json()
         # settings.cache_path.write_text(json.dumps(response_json, indent=4, ensure_ascii=False))

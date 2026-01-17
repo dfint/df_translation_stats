@@ -2,8 +2,8 @@ name: Build diagram
 on:
   workflow_dispatch:
 
-  schedule:
-  - cron: "0 9,21 * * *"  # Run at 0am and 12pm GMT+3
+  repository_dispatch:
+    types: [update]
 
   push:
     branches:
@@ -19,6 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+
+      - name: Checkout and update the translation-backup submodule
+        run: git submodule update --init --remote
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -38,7 +41,7 @@ jobs:
           poe run
 
       - name: Commit changes
-        if: ${{ contains(fromJSON('["workflow_dispatch", "schedule"]'), github.event_name) }}
+        if: ${{ contains(fromJSON('["workflow_dispatch", "schedule", "repository_dispatch"]'), github.event_name) }}
         uses: EndBug/add-and-commit@v9.1.4
         with:
           author_name: github-actions[bot]
