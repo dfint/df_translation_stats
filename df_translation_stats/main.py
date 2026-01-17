@@ -11,19 +11,20 @@ from langcodes import Language
 from loguru import logger
 
 from df_translation_stats.quickchart import Dataset, get_chart
-from df_translation_stats.transifex import get_resource_strings_tagged_notranslate, get_translation_stats
+from df_translation_stats.stats.transifex import TransifexStatsService
 from df_translation_stats.settings import settings
 
 if TYPE_CHECKING:
-    from df_translation_stats.transifex import TranslationStats
+    from df_translation_stats.stats import TranslationStats
+    from df_translation_stats.stats.common import StatsService
 
 
-async def get_count(client: httpx.AsyncClient, resource: str) -> int:
-    return len(await get_resource_strings_tagged_notranslate(client, resource))
+async def get_count(service: StatsService, resource: str) -> int:
+    return len(await service.get_resource_strings_tagged_notranslate(resource))
 
 
-async def get_notranslate_tagged_strings_count(client: httpx.AsyncClient, resources: Iterable[str]) -> dict[str, int]:
-    results = await asyncio.gather(*(get_count(client, resource) for resource in resources))
+async def get_notranslate_tagged_strings_count(service: StatsService, resources: Iterable[str]) -> dict[str, int]:
+    results = await asyncio.gather(*(get_count(service, resource) for resource in resources))
     return {resource: count for resource, count in zip(resources, results)}
 
 
@@ -78,10 +79,11 @@ async def one_diagram() -> None:
     output.parent.mkdir(exist_ok=True, parents=True)
 
     async with httpx.AsyncClient() as client:
-        raw_data = await get_translation_stats(client)
+        service = TransifexStatsService(client)
+        raw_data = await service.get_translation_stats()
         dataset: Dataset = prepare_dataset(raw_data, settings.notranslate_tagged_strings)
         try:
-            notranslate_tagged_strings = await get_notranslate_tagged_strings_count(client, dataset.resources)
+            notranslate_tagged_strings = await get_notranslate_tagged_strings_count(service, dataset.resources)
             logger.info(f"{notranslate_tagged_strings=}")
         except ValueError as ex:
             logger.exception(ex)
