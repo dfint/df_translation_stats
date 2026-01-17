@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 
 class Attributes(BaseModel):
@@ -38,4 +38,4 @@ class ResourceLanguageStats(BaseModel):
 
 
 class TranslationStats(BaseModel):
-    data: list[ResourceLanguageStats]
+    data: list[ResourceLanguageStats] = Field(default_factory=list)
