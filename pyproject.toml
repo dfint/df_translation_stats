@@ -14,6 +14,11 @@ dependencies = [
     "scour>=0.38.2",
 ]
 
+[dependency-groups]
+dev = [
+    "ruff>=0.14.13",
+]
+
 [tool.ruff]
 target-version = "py312"
 line-length = 120
