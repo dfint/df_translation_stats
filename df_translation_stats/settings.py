@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from pydantic import BaseModel, Field
 from pydantic_settings import (
     BaseSettings,
@@ -40,4 +41,4 @@ class Settings(BaseSettings):
         )
 
 
-settings = Settings()  # type: ignore
+settings = Settings()  # pyright: ignore[reportCallIssue]

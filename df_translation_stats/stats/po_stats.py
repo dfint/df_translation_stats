@@ -32,9 +32,9 @@ def count_translated_lines(path: Path) -> CountTranslatedLinesResult:
                 entries += 1
                 if message.string:
                     if message.string != message.id:
-                        translated_entries.add(StringWithContext(cast(str, message.id), message.context))
+                        translated_entries.add(StringWithContext(cast("str", message.id), message.context))
                     else:
-                        notranslated_entries.add(StringWithContext(cast(str, message.id), message.context))
+                        notranslated_entries.add(StringWithContext(cast("str", message.id), message.context))
 
     return CountTranslatedLinesResult(entries, translated_entries, notranslated_entries)
 
@@ -83,4 +83,4 @@ class PoStatsService:
         return translation_stats
 
     async def get_resource_strings_tagged_notranslate(self, resource: str) -> list[dict[str, Any]]:
-        raise NotImplemented
+        raise NotImplementedError

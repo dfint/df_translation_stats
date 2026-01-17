@@ -21,8 +21,11 @@ line-length = 120
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+    "ANN002",
+    "ANN003",
     "C408",
     "D",
+    "S101",
 ]
 
 [tool.poe.tasks]

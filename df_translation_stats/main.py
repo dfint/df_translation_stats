@@ -2,31 +2,19 @@ from __future__ import annotations
 
 import asyncio
 from collections import defaultdict
-from collections.abc import Iterable
-from pathlib import Path
 from typing import TYPE_CHECKING
 
-import httpx
 from langcodes import Language
 from loguru import logger
 
 from df_translation_stats.quickchart import Dataset, get_chart
-from df_translation_stats.stats.po_stats import PoStatsService
-from df_translation_stats.stats.transifex import TransifexStatsService
 from df_translation_stats.settings import settings
+from df_translation_stats.stats.po_stats import PoStatsService
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     from df_translation_stats.stats import TranslationStats
-    from df_translation_stats.stats.common import StatsService
-
-
-async def get_count(service: StatsService, resource: str) -> int:
-    return len(await service.get_resource_strings_tagged_notranslate(resource))
-
-
-async def get_notranslate_tagged_strings_count(service: StatsService, resources: Iterable[str]) -> dict[str, int]:
-    results = await asyncio.gather(*(get_count(service, resource) for resource in resources))
-    return {resource: count for resource, count in zip(resources, results)}
 
 
 def prepare_dataset(raw_data: TranslationStats, notranslate_tagged_strings: dict[str, int]) -> Dataset:
@@ -76,7 +64,8 @@ def calculate_height(dataset: Dataset) -> int:
 
 async def one_diagram() -> None:
     input_path = settings.input_path
-    assert input_path is not None and input_path.exists()
+    assert input_path is not None
+    assert input_path.exists()
     logger.info(f"input_path: {input_path.resolve()}")
 
     output_path = settings.output_path

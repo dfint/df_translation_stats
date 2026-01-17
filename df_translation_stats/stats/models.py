@@ -24,7 +24,7 @@ class ResourceLanguageStats(BaseModel):
 
     @model_validator(mode="before")
     @classmethod
-    def compute_resource_info(cls, data: Any) -> Any:
+    def compute_resource_info(cls, data: Any) -> Any:  # noqa: ANN401
         assert isinstance(data, dict)
         if "resource_info" in data:
             return data

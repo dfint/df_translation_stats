@@ -13,7 +13,7 @@ TX_PROJECT_ID = "o:dwarf-fortress-translation:p:dwarf-fortress-steam"
 class TransifexStatsService:
     client: httpx.AsyncClient
 
-    def __init__(self, client: httpx.AsyncClient):
+    def __init__(self, client: httpx.AsyncClient) -> None:
         self.client = client
 
     async def get_translation_stats(self) -> TranslationStats:
@@ -51,5 +51,4 @@ class TransifexStatsService:
         )
 
         response_json = response.json()
-        # settings.cache_path.write_text(json.dumps(response_json, indent=4, ensure_ascii=False))
         return response_json["data"]
