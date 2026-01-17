@@ -24,7 +24,7 @@ class ResourceLanguageStats(BaseModel):
 
     @model_validator(mode='before')
     @classmethod
-    def check_card_number_not_present(cls, data: Any) -> Any:
+    def compute_resource_info(cls, data: Any) -> Any:
         assert isinstance(data, dict)
         resource_info_id = data.pop("id")
         _, organization, _, project, _, resource, _, language_code = resource_info_id.split(":")
