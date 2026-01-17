@@ -1,11 +1,12 @@
 from datetime import datetime
+from typing import Any
 
-from pydantic import BaseModel, computed_field
+from pydantic import BaseModel, model_validator
 
 
 class Attributes(BaseModel):
     translated_strings: int
-    reviewed_strings: int
+    reviewed_strings: int | None = None
     total_strings: int
     last_translation_update: datetime | None = None
 
@@ -18,19 +19,21 @@ class ResoruceInfo(BaseModel):
 
 
 class ResourceLanguageStats(BaseModel):
-    id: str
     attributes: Attributes
+    resource_info: ResoruceInfo
 
-    @computed_field
-    @property
-    def resource_info(self) -> ResoruceInfo:
-        _, organization, _, project, _, resource, _, language_code = self.id.split(":")
-        return ResoruceInfo(
+    @model_validator(mode='before')
+    @classmethod
+    def check_card_number_not_present(cls, data: Any) -> Any:
+        resource_info_id = data.pop("id")
+        _, organization, _, project, _, resource, _, language_code = resource_info_id
+        data["resource_info"] = dict(
             organization=organization,
             project=project,
             resource=resource,
             language_code=language_code,
         )
+        return data
 
 
 class TranslationStats(BaseModel):
