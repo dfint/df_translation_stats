@@ -1,9 +1,9 @@
-from dataclasses import dataclass
 from pathlib import Path
-from typing import NamedTuple, NewType, cast
+from typing import Any, NamedTuple, NewType, cast
 
 from babel.messages.pofile import read_po
-from langcodes import Language
+
+from df_translation_stats.stats.models import Attributes, ResourceInfo, ResourceLanguageStats, TranslationStats
 
 LanguageName = NewType("LanguageName", str)
 ResourceName = NewType("ResourceName", str)
@@ -39,28 +39,39 @@ def count_translated_lines(path: Path) -> CountTranslatedLinesResult:
     return CountTranslatedLinesResult(entries, translated_entries, notranslated_entries)
 
 
-@dataclass
-class ResourceStats:
-    stats_per_language: dict[LanguageName, int]
-    total_lines: int
-
-
-def get_resource_stat(path: Path) -> ResourceStats:
+def get_resource_stats(path: Path | str, translation_stats: TranslationStats) -> None:
     path = Path(path)
-    stats_per_language: dict[LanguageName, int] = {}
-    total_lines: int = 0
-    all_notranslated: set[StringWithContext] = set()
-    translated_items_per_language: dict[LanguageName, set[StringWithContext]] = {}
+    assert path.exists()
+    data = translation_stats.data
 
     for file in sorted(filter(Path.is_file, path.glob("*.po"))):
-        language = LanguageName(Language.get(file.stem).display_name())
         translated_lines_info = count_translated_lines(file)
-        translated_items_per_language[language] = translated_lines_info.translated_entries
+        resource_stat = ResourceLanguageStats(
+            attributes=Attributes(
+                total_strings=translated_lines_info.total_lines_count,
+                translated_strings=len(translated_lines_info.translated_entries),
+            ),
+            resource_info=ResourceInfo(
+                organization="dwarf-fortress-translation",
+                project="dwarf-fortress-steam",
+                resource=path.name,
+                language_code=file.stem
+            )
+        )
+        data.append(resource_stat)
 
-        total_lines = max(total_lines, translated_lines_info.total_lines_count)
 
+class PoStatsService:
+    path: Path
 
-    for language, translated_items in translated_items_per_language.items():
-        stats_per_language[language] = len(translated_items)
+    def __init__(self, path: str | Path) -> None:
+        self.path = Path(path)
 
-    return ResourceStats(stats_per_language, total_lines - len(all_notranslated))
+    async def get_translation_stats(self) -> TranslationStats:
+        translation_stats = TranslationStats(data=[])
+        for resource_directory in sorted(filter(Path.is_dir, self.path.glob("*"))):
+            get_resource_stats(resource_directory, translation_stats)
+        return translation_stats
+
+    async def get_resource_strings_tagged_notranslate(self, resource: str) -> list[dict[str, Any]]:
+        raise NotImplemented

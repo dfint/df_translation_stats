@@ -24,6 +24,7 @@ class Settings(BaseSettings):
 
     output_path: Path
     cache_path: Path | None = None
+    input_path: Path | None = None
 
     @classmethod
     def settings_customise_sources(
@@ -39,4 +40,4 @@ class Settings(BaseSettings):
         )
 
 
-settings = Settings()
+settings = Settings()  # type: ignore

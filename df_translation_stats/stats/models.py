@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, model_validator
 
 
 class Attributes(BaseModel):
@@ -11,7 +11,7 @@ class Attributes(BaseModel):
     last_translation_update: datetime | None = None
 
 
-class ResoruceInfo(BaseModel):
+class ResourceInfo(BaseModel):
     organization: str
     project: str
     resource: str
@@ -20,12 +20,15 @@ class ResoruceInfo(BaseModel):
 
 class ResourceLanguageStats(BaseModel):
     attributes: Attributes
-    resource_info: ResoruceInfo
+    resource_info: ResourceInfo
 
     @model_validator(mode="before")
     @classmethod
     def compute_resource_info(cls, data: Any) -> Any:
         assert isinstance(data, dict)
+        if "resource_info" in data:
+            return data
+
         resource_info_id = data.pop("id")
         _, organization, _, project, _, resource, _, language_code = resource_info_id.split(":")
         data["resource_info"] = dict(
@@ -38,4 +41,4 @@ class ResourceLanguageStats(BaseModel):
 
 
 class TranslationStats(BaseModel):
-    data: list[ResourceLanguageStats] = Field(default_factory=list)
+    data: list[ResourceLanguageStats]
