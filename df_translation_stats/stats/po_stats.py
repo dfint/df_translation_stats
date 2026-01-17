@@ -55,10 +55,18 @@ def get_resource_stats(path: Path | str, translation_stats: TranslationStats) ->
                 organization="dwarf-fortress-translation",
                 project="dwarf-fortress-steam",
                 resource=path.name,
-                language_code=file.stem
-            )
+                language_code=file.stem,
+            ),
         )
         data.append(resource_stat)
+
+
+resource_order = {
+    "hardcoded_steam": "0hardcoded_steam",
+    "objects": "1objects",
+    "text_set": "2text_set",
+    "lua": "3lua",
+}
 
 
 class PoStatsService:
@@ -69,7 +77,8 @@ class PoStatsService:
 
     async def get_translation_stats(self) -> TranslationStats:
         translation_stats = TranslationStats(data=[])
-        for resource_directory in sorted(filter(Path.is_dir, self.path.glob("*"))):
+        directories = filter(Path.is_dir, self.path.glob("*"))
+        for resource_directory in sorted(directories, key=lambda x: resource_order.get(x.name) or x.name):
             get_resource_stats(resource_directory, translation_stats)
         return translation_stats
 
