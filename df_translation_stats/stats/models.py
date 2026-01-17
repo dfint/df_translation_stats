@@ -22,7 +22,7 @@ class ResourceLanguageStats(BaseModel):
     attributes: Attributes
     resource_info: ResoruceInfo
 
-    @model_validator(mode='before')
+    @model_validator(mode="before")
     @classmethod
     def compute_resource_info(cls, data: Any) -> Any:
         assert isinstance(data, dict)
