@@ -9,7 +9,7 @@ dependencies = [
     "httpx>=0.28.1",
     "langcodes[data]>=3.5.1",
     "loguru>=0.7.3",
-    "pydantic>=2.11.7",
+    "pydantic>=2.13.3",
     "pydantic-settings>=2.10.1",
     "scour>=0.38.2",
 ]
